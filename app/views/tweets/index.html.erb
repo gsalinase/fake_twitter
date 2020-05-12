@@ -1,0 +1,11 @@
+<h1 class="py-4">Tweets</h1>
+
+<% @tweets.each do |tweet| %>
+<div class="card" style="width: 18rem;">
+  <%= image_tag "#{tweet.image_url}", class: "card-img-top" %>
+  <div class="card-body">
+    <p class="card-text"><%= tweet.content %></p>
+  </div>
+</div>
+
+<% end %>
