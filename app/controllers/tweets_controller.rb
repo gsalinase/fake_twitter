@@ -17,10 +17,11 @@ class TweetsController < ApplicationController
     @tweet = Tweet.new(tweet_params)
     if @tweet.save!
       flash[:notice] = "Tu tweet ha sido creado. :)"
+      redirect_to root_path
     else
       flash[:notice] = "Tu tweet no ha sido creado. :("
+      redirect_to root_path
     end
-    redirect_to "index"
   end
 
   def update
