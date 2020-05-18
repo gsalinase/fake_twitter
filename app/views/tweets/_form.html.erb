@@ -1,13 +1,21 @@
-<%= form_with model: @tweet do |form| %>
-  <div class="form-group">
-    <%= form.label :content, "Mensaje" %>
-    <%= form.text_area :content, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= form.label :image_url, "Url de Imagen" %>
-    <%= form.text_field :image_url, class: "form-control" %>
-  </div>
-  <div class="py-3">
-    <%= form.submit "Create", class: "btn btn-secondary" %>
-  </div>
+<%= form_with model: @tweet, local: true, class: "w-100" do |form| %>
+<% if @tweet.errors.any? %>
+<div class="alert alert-danger" id="error_explanation">
+  <h6>Tu tweet tiene <%= pluralize(@tweet.errors.count, "error:") %></h6>
+  <ul class="error--list">
+    <% @tweet.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<div class="form-group">
+  <%= form.text_area :content, class: "form-control", placeholder: "¿Qué está pensando?" %>
+</div>
+<div class="form-group">
+  <%= form.text_field :image_url, class: "form-control", placeholder: "Agrega la URL de una imagen" %>
+</div>
+<div>
+  <%= form.submit "Twittear", class: "btn btn-primary" %>
+</div>
 <% end %>

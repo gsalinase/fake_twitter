@@ -1,2 +1,41 @@
-<h1>Tweets#show</h1>
-<p>Find me in app/views/tweets/show.html.erb</p>
+<div class="index">
+  <div class="form-auth--container w-100">
+    <div class="form-auth--header">
+      <div class="form-auth--header-icon ml-4">
+        <%= link_to image_tag("arrow-left.svg", alt: "Logo", class: "navbar--logo"), :back %>
+      </div>
+      <h2 class="form-auth--header-title">
+        Tweet
+      </h2>
+    </div>
+  </div>
+  <div class="index--content">
+    <div class="tweet">
+      <div class="tweet--header">
+        <%= image_tag "#{@tweet.user.image_url}", class: "tweet--user-image" %>
+        <span class="tweet--username"><%= @tweet.user.username %></span> •
+        <span class="tweet--date"><%= distance_of_time_in_words(Time.now, @tweet.created_at) %></span>
+      </div>
+      <div class="tweet--content">
+        <p class="tweet--content-text">
+          <%= @tweet.content %>
+        </p>
+        <%= image_tag "#{@tweet.image_url}", class: "tweet--content-image" %>
+
+        <% if user_signed_in? %>
+        <hr>
+        <div>
+          <%= @tweet.total_like %>
+          Me Gusta
+          <% @likes.each do |like| %>
+          <span>
+            <%= image_tag "#{like.photo_user(like.user_id).join('')}", style: "width: 30px", class: "border-radius-circle" %>
+          </span>
+          <% end %>
+        </div>
+        <hr>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

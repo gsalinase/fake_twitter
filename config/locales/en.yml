@@ -30,4 +30,62 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  views:
+    pagination:
+      first: "&laquo; First"
+      last: "Last &raquo;"
+      previous: "&lsaquo; Prev"
+      next: "Next &rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "No %{entry_name} found"
+          one: "Displaying <b>1</b> %{entry_name}"
+          other: "Displaying <b>all %{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> in total"
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: Hace una hora
+        other: Hace %{count} horas
+      about_x_months:
+        one: Hace un mes
+        other: Hace %{count} meses
+      about_x_years:
+        one: Hace un año
+        other: Hace %{count} años
+      almost_x_years:
+        one: Alrededor de 1 año
+        other: Alrededor de %{count} años
+      half_a_minute: Hace 30 segundos
+      less_than_x_seconds:
+        one: Hace menos de 1 segundo
+        other: Hace menos de %{count} segundos
+      less_than_x_minutes:
+        one: Hace menos de un minuto
+        other: Hace menos de %{count} minutos
+      over_x_years:
+        one: Cerca de 1 año
+        other: Cerca de %{count} años
+      x_seconds:
+        one: 1 segundos
+        other: "%{count} segundos"
+      x_minutes:
+        one: 1 minutos
+        other: "%{count} minutos"
+      x_days:
+        one: 1 día
+        other: "%{count} dias"
+      x_months:
+        one: 1 mes
+        other: "%{count} mes"
+      x_years:
+        one: 1 año
+        other: "%{count} años"
+  activerecord:
+    errors:
+      messages:
+        blank: "No puede estar en blanco"

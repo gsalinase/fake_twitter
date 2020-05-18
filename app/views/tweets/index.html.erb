@@ -1,11 +1,41 @@
-<h1 class="py-4">Tweets</h1>
+<div class="index">
+  <div class="index--header">
+    <h1>Tweets</h1>
+  </div>
+  <% if user_signed_in? %>
+  <div class="index--form">
+    <%= image_tag "#{current_user.image_url}", class: "tweet--user-image" %>
+    <%= render "form" %>
+  </div>
+  <% end %>
+  <div class="index--content">
+    <% @tweets.each do |tweet| %>
+    <div class="tweet">
+      <div class="tweet--header">
+        <%= image_tag "#{tweet.user.image_url}", class: "tweet--user-image" %>
+        <span class="tweet--username"><%= tweet.user.username %></span> •
+        <%= link_to distance_of_time_in_words(Time.now, tweet.created_at), tweet_path(tweet.id), class: "tweet--date" %>
+      </div>
+      <div class="tweet--content">
+        <p class="tweet--content-text">
+          <%= tweet.content %>
+        </p>
+        <%= image_tag "#{tweet.image_url}", class: "tweet--content-image" %>
 
-<% @tweets.each do |tweet| %>
-<div class="card mb-4">
-  <%= image_tag "#{tweet.image_url}", class: "card-img-top" %>
-  <div class="card-body">
-    <p class="card-text"><%= tweet.content %></p>
+        <% if user_signed_in? %>
+        <hr>
+        <div>
+          <%= link_to "#{tweet.total_like} Me Gusta", likes_path(tweet.id), method: :post, class: "tweet--date" %> •
+          <%= link_to "#{tweet.total_retweet} Retweets", retweets_path(tweet.id), method: :post, class: "tweet--date"  %>
+        </div>
+        <hr>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
   </div>
 </div>
 
-<% end %>
+
+
+<%= paginate @tweets%>
