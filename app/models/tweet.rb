@@ -6,4 +6,6 @@ class Tweet < ApplicationRecord
   attribute :total_like, :integer, default: 0
   attribute :total_retweet, :integer, default: 0
   paginates_per 50
+
+  scope :tweets_for_me, -> (user_ids) { where(user_id: user_ids) }
 end
