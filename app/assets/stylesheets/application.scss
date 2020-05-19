@@ -82,6 +82,11 @@ h1 {
   max-width: 30px;
 }
 
+.dropdown-menu {
+  left: inherit;
+  right: 0;
+}
+
 // Forms
 .form-auth {
   display: flex;
