@@ -9,7 +9,7 @@
   </div>
   <% end %>
   <div class="index--content">
-    <% @tweets.reverse.each do |tweet| %>
+    <% @tweets.each do |tweet| %>
     <div class="tweet">
       <div class="tweet--header">
         <%= image_tag "#{tweet.user.image_url}", class: "tweet--user-image" %>

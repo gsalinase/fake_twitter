@@ -1,5 +1,4 @@
 ActiveAdmin.register User do
-
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -10,9 +9,19 @@ ActiveAdmin.register User do
   # or
   #
   permit_params do
-    permitted = [:email, :encrypted_password, :reset_password_token, :reset_password_sent_at, :remember_created_at, :username, :image_url]
+    permitted = [:email, :encrypted_password, :reset_password_token, :reset_password_sent_at, :remember_created_at, :username, :image_url, :suspended]
     permitted << :other if params[:action] == 'create' && current_user.admin?
     permitted
+  end
+
+  form title: 'Edit User' do |f|
+    inputs 'Detalles' do
+      f.input :email
+      f.input :username
+      f.input :image_url
+      f.input :suspended
+    end
+    actions
   end
 
   index do
