@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   post 'retweets/:tweet_id', to: 'retweets#create', as: 'retweets'
   post 'likes/:tweet_id', to: 'likes#create', as: 'likes'
+  get 'tweets/hashtags/:name', to: 'tweets#hashtags'
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'

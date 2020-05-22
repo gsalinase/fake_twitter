@@ -2,12 +2,6 @@
   <div class="index--header">
     <h1>Tweets</h1>
   </div>
-  <% if user_signed_in? %>
-  <div class="index--form">
-    <%= image_tag "#{current_user.image_url}", class: "tweet--user-image" %>
-    <%= render "form" %>
-  </div>
-  <% end %>
   <div class="index--content">
     <% @tweets.each do |tweet| %>
     <div class="tweet">
@@ -18,7 +12,7 @@
       </div>
       <div class="tweet--content">
         <p class="tweet--content-text">
-          <%= render_hashtag(tweet.content) %>
+          <%= tweet.content %>
         </p>
         <%= image_tag "#{tweet.image_url}", class: "tweet--content-image" %>
 
@@ -35,7 +29,3 @@
     <% end %>
   </div>
 </div>
-
-
-
-<%= paginate @tweets%>

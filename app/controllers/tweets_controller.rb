@@ -46,6 +46,11 @@ class TweetsController < ApplicationController
   def destroy
   end
 
+  def hashtags
+    tag = Tag.find_by(name: params[:name])
+    @tweets = tag.tweets
+  end
+
   private
   def tweet_params
     params.require(:tweet).permit(:content, :image_url)
