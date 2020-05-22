@@ -1,0 +1,38 @@
+<div class="index">
+  <div class="form-auth--container w-100">
+    <div class="form-auth--header">
+      <div class="form-auth--header-icon ml-4">
+        <%= link_to image_tag("arrow-left.svg", alt: "Logo", class: "navbar--logo"), tweets_path %>
+      </div>
+      <h2 class="form-auth--header-title">
+        Resultados Búsqueda
+      </h2>
+    </div>
+  </div>
+  <div class="index--content">
+    <% @tweet_search.each do |tweet| %>
+    <div class="tweet">
+      <div class="tweet--header">
+        <%= image_tag "#{tweet.user.image_url}", class: "tweet--user-image" %>
+        <span class="tweet--username"><%= tweet.user.username %></span> •
+        <%= distance_of_time_in_words(Time.now, tweet.created_at) %>
+      </div>
+      <div class="tweet--content">
+        <p class="tweet--content-text">
+          <%= tweet.content %>
+        </p>
+        <%= image_tag "#{tweet.image_url}", class: "tweet--content-image" %>
+
+        <% if user_signed_in? %>
+        <hr>
+        <div>
+          <%= link_to "#{tweet.total_like} Me Gusta", likes_path(tweet.id), method: :post, class: "tweet--date" %> •
+          <%= link_to "#{tweet.total_retweet} Retweets", retweets_path(tweet.id), method: :post, class: "tweet--date"  %>
+        </div>
+        <hr>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

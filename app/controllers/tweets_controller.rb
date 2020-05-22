@@ -1,6 +1,7 @@
 class TweetsController < ApplicationController
   before_action :authenticate_user!, except: :index
   def index
+    @q = Tweet.ransack(params[:q])
     if user_signed_in?
       @followers = current_user.followings.pluck(:followed_id)
       @tweets = Tweet.tweets_for_me(@followers).order(:created_at).page params[:page]
@@ -8,6 +9,11 @@ class TweetsController < ApplicationController
     else
       @tweets = Tweet.order(:created_at).page params[:page]
     end
+  end
+
+  def search_tweet
+    @q = Tweet.ransack(params[:q])
+    @tweet_search = @q.result(distinct: true)
   end
 
   def new

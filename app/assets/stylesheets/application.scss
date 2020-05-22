@@ -87,6 +87,25 @@ h1 {
   right: 0;
 }
 
+// Serch
+.search {
+  &--input-text {
+    width: 60%;
+    display: inline;
+
+    &:hover,
+    &:focus {
+      border: 1px solid #1DA1F2;
+    }
+
+    &:active,
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+
 // Forms
 .form-auth {
   display: flex;
@@ -106,7 +125,7 @@ h1 {
         width: 20px;
       }
     }
-    
+
     &-title {
       text-align: center;
       width: 90%;

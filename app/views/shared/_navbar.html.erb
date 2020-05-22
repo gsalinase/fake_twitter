@@ -8,15 +8,20 @@
     <div class="navbar-nav w-100 mr-auto">
       <ul class="navbar-nav w-100 justify-content-end">
         <% if user_signed_in? %>
+        <li class="nav-link text-center pt-0 pb-0 w-100">
+          <%= search_form_for @q, url: search_tweet_tweets_path do |f| %>
+          <%= f.search_field :content_cont, class: 'form-control search--input-text', placeholder: 'Buscar Tweet' %>
+          <% end %>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             Hola <%= current_user.username %>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to 'Perfil', edit_user_registration_path, :class => 'dropdown-item' %>
+            <%= link_to 'Perfil', edit_user_registration_path, class: 'dropdown-item' %>
             <div class="dropdown-divider"></div>
-            <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete, :class => 'dropdown-item' %>
+            <%= link_to "Cerrar Sesión", destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
           </div>
         </li>
         <% else %>

@@ -15,7 +15,7 @@ ActiveAdmin.register User do
   end
 
   form title: 'Edit User' do |f|
-    inputs 'Detalles' do
+    inputs 'Details' do
       f.input :email
       f.input :username
       f.input :image_url

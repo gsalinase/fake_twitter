@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
-  resources :tweets
+  resources :tweets do 
+    collection do
+      get :search_tweet
+    end
+  end
   root 'tweets#index'
 end
