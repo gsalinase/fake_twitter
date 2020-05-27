@@ -1,5 +1,6 @@
 class TweetsController < ApplicationController
   before_action :authenticate_user!, except: :index
+
   def index
     @q = Tweet.ransack(params[:q])
     if user_signed_in?

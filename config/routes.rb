@@ -13,5 +13,7 @@ Rails.application.routes.draw do
       get :search_tweet
     end
   end
+  post 'api/news'
+  get 'api/:date_1/:date_2', to: 'api#date_tweet'
   root 'tweets#index'
 end
