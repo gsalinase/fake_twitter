@@ -30,6 +30,6 @@ class ApiController < ActionController::API
 
   private
   def api_params
-    params.require(:api).permit(:content, :image_url, :user_id)
+    params.require(:api).permit(:content, :image_url).merge(user: current_user)
   end
 end
