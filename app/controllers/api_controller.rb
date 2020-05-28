@@ -1,4 +1,6 @@
 class ApiController < ActionController::API
+  acts_as_token_authentication_handler_for User
+
   def news
     @tweets = Tweet.limit(50).order(id: :desc)
     @tweets.map do |tweet|
@@ -8,7 +10,7 @@ class ApiController < ActionController::API
         user_id: tweet.user.id,
         likes_count: tweet.likes.count,
         retweet_count: tweet.retweets.count,
-        retwitted_from: tweet.retweets.map{ |r| {user_email: r.user.email} }
+        retwitted_from: tweet.retweets.map{ |r| {id: r.user&.id, user_email: r.user&.email} }
       }
     end
     render json: @tweets
@@ -20,7 +22,14 @@ class ApiController < ActionController::API
     @tweets = Tweet.where(created_at: date_1..date_2)
     render json: @tweets
   end
-  
+
   def create_tweet
+    @tweet = Tweet.create!(api_params)
+    render json: @tweet
+  end
+
+  private
+  def api_params
+    params.require(:api).permit(:content, :image_url, :user_id)
   end
 end

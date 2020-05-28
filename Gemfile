@@ -35,6 +35,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 # Devise gem
 gem 'devise'
+gem 'simple_token_authentication', '~> 1.0'
 
 # Bootstrap 4.4.1
 gem 'bootstrap', '~> 4.4.1'

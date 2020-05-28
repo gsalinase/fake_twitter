@@ -15,5 +15,6 @@ Rails.application.routes.draw do
   end
   post 'api/news'
   get 'api/:date_1/:date_2', to: 'api#date_tweet'
+  post 'api/create_tweet'
   root 'tweets#index'
 end
