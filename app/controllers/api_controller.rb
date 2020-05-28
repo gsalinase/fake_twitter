@@ -10,16 +10,16 @@ class ApiController < ActionController::API
         user_id: tweet.user.id,
         likes_count: tweet.likes.count,
         retweet_count: tweet.retweets.count,
-        retwitted_from: tweet.retweets.map{ |r| {id: r.user&.id, user_email: r.user&.email} }
+        retwitted_from: tweet.retweets.map { |r| { id: r.user&.id, user_email: r.user&.email } }
       }
     end
     render json: @tweets
   end
 
   def date_tweet
-    date_1 = Date.parse(params[:date_1])
-    date_2 = Date.parse(params[:date_2])
-    @tweets = Tweet.where(created_at: date_1..date_2)
+    date1 = Date.parse(params[:date_1])
+    date2 = Date.parse(params[:date_2])
+    @tweets = Tweet.where(created_at: date1..date2)
     render json: @tweets
   end
 
@@ -29,6 +29,7 @@ class ApiController < ActionController::API
   end
 
   private
+
   def api_params
     params.require(:api).permit(:content, :image_url).merge(user: current_user)
   end
